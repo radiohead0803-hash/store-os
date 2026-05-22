@@ -1,0 +1,3 @@
+product_id,type,prompt_file,file_path,version,proof_status,operator_approval,generated_at,approved_at
+STORE-01-STD,board_pdf,day-01-design-v1/prompt-board.md,day-01-design-v1/board-v1.svg,v1,pending,pending,2026-05-22T03:16:17Z,
+STORE-01-STD,sticker_sheet,day-01-design-v1/prompt-stickers.md,day-01-design-v1/stickers-v1.svg,v1,pending,pending,2026-05-22T03:16:17Z,
