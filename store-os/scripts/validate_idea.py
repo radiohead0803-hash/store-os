@@ -4,7 +4,7 @@ import argparse
 import json
 import sys
 from dataclasses import dataclass, asdict
-from typing import Dict, List
+from typing import List
 
 if sys.platform == 'win32':
     sys.stdout.reconfigure(encoding='utf-8')
@@ -22,12 +22,12 @@ class ValidationResult:
     recommendation: str
     estimated_revenue: str
     prep_time: str
-    
+
 def estimate_search_volume(product: str) -> tuple[int, str]:
     """검색량 추정 (실제로는 네이버 검색광고 API 사용)"""
     keywords_high_volume = ["스티커", "칭찬", "보상", "학습", "공부"]
     keywords_medium = ["인쇄", "프린터블", "다운로드"]
-    
+
     score = 0
     for kw in keywords_high_volume:
         if kw in product:
@@ -35,7 +35,7 @@ def estimate_search_volume(product: str) -> tuple[int, str]:
     for kw in keywords_medium:
         if kw in product:
             score += 100
-            
+
     if score > 800:
         return score, "월 800+ (높음)"
     elif score > 300:
@@ -48,14 +48,14 @@ def check_competition(product: str) -> tuple[int, str]:
     # 간단한 휴리스틱
     generic_terms = ["스티커", "세트", "판"]
     score = 50
-    
+
     for term in generic_terms:
         if term in product:
             score += 15
-    
+
     if "칭찬" in product or "보상" in product:
         score -= 10  # 특화된 니치
-    
+
     if score > 80:
         return score, "매우 높음 (진입 어려움)"
     elif score > 60:
@@ -77,22 +77,22 @@ def estimate_price_range(product: str) -> str:
 def check_legal_risks(product: str) -> List[str]:
     """법률 리스크 체크"""
     risks = []
-    
+
     # 어린이 대상
     if any(kw in product for kw in ["초등", "어린이", "아동", "유아", "칭찬"]):
         risks.append("⚠️ 어린이 대상 → 교육 효과 과대광고 주의 (공정거래법)")
-    
+
     # 학습/교육 효과
     if any(kw in product for kw in ["학습", "공부", "성적", "교육"]):
         risks.append("⚠️ '성적 향상', '100% 효과' 표현 금지")
-    
+
     # 프린터블/다운로드
     if any(kw in product for kw in ["다운로드", "PDF", "파일"]):
         risks.append("⚠️ 디지털 상품 → 환불 정책 명확히 (7일 내 다운로드 전)")
-    
+
     if not risks:
         risks.append("✅ 특별한 법률 리스크 없음")
-    
+
     return risks
 
 def assess_production(product: str) -> tuple[int, str]:
@@ -110,13 +110,13 @@ def calculate_score(search: int, competition: int, production: int) -> int:
     search_score = min(search / 10, 40)  # 최대 40점
     competition_score = (100 - competition) * 0.3  # 경쟁 낮을수록 높음
     production_score = production * 0.3
-    
+
     return int(search_score + competition_score + production_score)
 
 def recommend(score: int, legal_risks: List[str]) -> str:
     """추천 결정"""
     high_risks = [r for r in legal_risks if "금지" in r or "주의" in r]
-    
+
     if score >= 70 and len(high_risks) <= 1:
         return "✅ 진행 권고 (Mini 단계부터 시작)"
     elif score >= 50:
@@ -126,8 +126,6 @@ def recommend(score: int, legal_risks: List[str]) -> str:
 
 def estimate_revenue(score: int, price_range: str) -> str:
     """예상 매출 추정"""
-    avg_price = 10000  # 중간값
-    
     if score >= 70:
         return "100-300만원 (첫 3개월)"
     elif score >= 50:
@@ -151,12 +149,12 @@ def validate_idea(product_name: str, market_check: bool = False) -> ValidationRe
     price_range = estimate_price_range(product_name)
     legal_risks = check_legal_risks(product_name)
     prod_score, prod_desc = assess_production(product_name)
-    
+
     total_score = calculate_score(search_vol, comp_score, prod_score)
     recommendation = recommend(total_score, legal_risks)
     revenue = estimate_revenue(total_score, price_range)
     prep = estimate_prep_time(prod_desc)
-    
+
     return ValidationResult(
         product_name=product_name,
         search_volume=search_desc,
@@ -175,23 +173,23 @@ def print_result(result: ValidationResult):
     print(f"\n{'='*60}")
     print(f"💡 아이디어 검증: {result.product_name}")
     print(f"{'='*60}\n")
-    
+
     print(f"{'✅' if '높음' in result.search_volume else '⚠️'} 검색량: {result.search_volume}")
     print(f"{'⚠️' if '높음' in result.competition_level else '✅'} 경쟁도: {result.competition_level}")
     print(f"✅ 예상 단가: {result.price_range}")
     print(f"{'✅' if '쉬움' in result.production_difficulty else '⚠️'} 제작 용이성: {result.production_difficulty}")
-    
-    print(f"\n📋 법률 리스크:")
+
+    print("\n📋 법률 리스크:")
     for risk in result.legal_risks:
         print(f"   {risk}")
-    
+
     print(f"\n📊 종합 점수: {result.score}/100")
     print(f"{result.recommendation}")
     print(f"\n💰 예상 월 매출: {result.estimated_revenue}")
     print(f"⏱️  준비 기간: {result.prep_time}")
-    
+
     print(f"\n{'='*60}")
-    
+
     # 다음 액션
     if result.score >= 70:
         print("\n🎯 다음 단계:")
@@ -215,11 +213,11 @@ def main():
     parser.add_argument("product", help="검증할 상품명")
     parser.add_argument("--market-check", action="store_true", help="시장 조사 포함 (API 사용)")
     parser.add_argument("--json", action="store_true", help="JSON 형식 출력")
-    
+
     args = parser.parse_args()
-    
+
     result = validate_idea(args.product, args.market_check)
-    
+
     if args.json:
         print(json.dumps(asdict(result), ensure_ascii=False, indent=2))
     else:

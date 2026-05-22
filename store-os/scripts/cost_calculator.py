@@ -39,16 +39,16 @@ def calculate_claude_cost(
 ) -> float:
     """Claude API 비용 계산"""
     # Sonnet 4 pricing: $3/M input, $15/M output
-    
+
     # 상품 설명 생성 (2K input, 8K output per product)
     product_cost = monthly_products * ((2000 * 3 + 8000 * 15) / 1_000_000)
-    
+
     # CS 초안 생성 (1K input, 3K output per ticket)
     cs_cost = monthly_cs_tickets * ((1000 * 3 + 3000 * 15) / 1_000_000)
-    
+
     # 주문 확인 메시지 (500 input, 1K output per order)
     order_cost = monthly_orders * ((500 * 3 + 1000 * 15) / 1_000_000)
-    
+
     return product_cost + cs_cost + order_cost
 
 def estimate_mini_stage() -> CostEstimate:
@@ -69,13 +69,13 @@ def estimate_standard_stage(
 ) -> CostEstimate:
     """Standard 단계 비용"""
     claude = calculate_claude_cost(monthly_products, monthly_orders, monthly_cs_tickets)
-    
+
     # 인프라
     vercel = 0.0  # Hobby 플랜
     domain = 1.0  # 연 $12 / 12개월
-    
+
     infra = vercel + domain
-    
+
     return CostEstimate(
         stage="Standard",
         claude_api=claude,
@@ -93,21 +93,21 @@ def estimate_full_stage(
     """Full 단계 비용"""
     claude = calculate_claude_cost(monthly_products, monthly_orders, monthly_cs_tickets)
     claude *= 5  # 대량 처리로 5배 증가
-    
+
     # 인프라
     railway_db = 5.0
     railway_redis = 5.0
     railway_web = 20.0
     domain = 1.0
-    
+
     infra = railway_db + railway_redis + railway_web + domain
-    
+
     # 이미지 생성 (월 50개 가정)
     image = 50.0
-    
+
     # 모니터링
     sentry = 26.0
-    
+
     return CostEstimate(
         stage="Full",
         claude_api=claude,
@@ -122,49 +122,49 @@ def print_cost_breakdown(estimate: CostEstimate, monthly_orders: int, monthly_re
     print(f"\n{'='*70}")
     print(f"📊 {estimate.stage} 단계 월간 비용 예측")
     print(f"{'='*70}\n")
-    
+
     print(f"Claude API: ${estimate.claude_api:.2f}")
     if estimate.stage == "Standard":
-        print(f"  - 상품 설명, CS 초안, 주문 확인")
+        print("  - 상품 설명, CS 초안, 주문 확인")
     elif estimate.stage == "Full":
-        print(f"  - 대량 처리 (제품 분석, 마케팅 자동화 포함)")
-    
+        print("  - 대량 처리 (제품 분석, 마케팅 자동화 포함)")
+
     print(f"\n인프라: ${estimate.infrastructure:.2f}")
     if estimate.stage == "Standard":
-        print(f"  - Vercel Hobby: $0 (무료)")
-        print(f"  - 도메인: $1")
+        print("  - Vercel Hobby: $0 (무료)")
+        print("  - 도메인: $1")
     elif estimate.stage == "Full":
-        print(f"  - Railway PostgreSQL: $5")
-        print(f"  - Railway Redis: $5")
-        print(f"  - Railway Web Service: $20")
-        print(f"  - 도메인: $1")
-    
+        print("  - Railway PostgreSQL: $5")
+        print("  - Railway Redis: $5")
+        print("  - Railway Web Service: $20")
+        print("  - 도메인: $1")
+
     if estimate.image_gen > 0:
         print(f"\n이미지 생성: ${estimate.image_gen:.2f}")
-        print(f"  - DALL-E 3 또는 Midjourney")
-    
+        print("  - DALL-E 3 또는 Midjourney")
+
     if estimate.monitoring > 0:
         print(f"\n모니터링: ${estimate.monitoring:.2f}")
-        print(f"  - Sentry (에러 추적)")
-    
+        print("  - Sentry (에러 추적)")
+
     print(f"\n{'─'*70}")
     print(f"💰 총 월간 비용: ${estimate.total:.2f}")
-    
+
     if monthly_orders > 0:
         per_order = estimate.per_order(monthly_orders)
         print(f"📈 주문당 비용: ${per_order:.2f}")
-    
+
     if monthly_revenue > 0:
         cost_ratio = (estimate.total / monthly_revenue) * 100
         print(f"📊 매출 대비 비용: {cost_ratio:.1f}%")
-        
+
         if cost_ratio <= 5:
-            print(f"   ✅ 건강한 비용 구조 (5% 이하)")
+            print("   ✅ 건강한 비용 구조 (5% 이하)")
         elif cost_ratio <= 10:
-            print(f"   ⚠️ 개선 필요 (10% 이하 목표)")
+            print("   ⚠️ 개선 필요 (10% 이하 목표)")
         else:
-            print(f"   🚨 비용 과다 (매출 증대 또는 비용 절감 필요)")
-    
+            print("   🚨 비용 과다 (매출 증대 또는 비용 절감 필요)")
+
     breakeven = estimate.breakeven_revenue_krw()
     print(f"\n✅ 손익분기점 매출: {breakeven/10000:.0f}만원 (비용이 매출의 5% 이하)")
 
@@ -179,11 +179,11 @@ def compare_stages(
     mini = estimate_mini_stage()
     standard = estimate_standard_stage(monthly_products, monthly_orders, monthly_cs_tickets)
     full = estimate_full_stage(monthly_products, monthly_orders, monthly_cs_tickets)
-    
+
     print(f"\n{'='*70}")
-    print(f"📊 단계별 비용 비교")
+    print("📊 단계별 비용 비교")
     print(f"{'='*70}\n")
-    
+
     header = (
         pad_display('단계', 12)
         + pad_display('Claude API', 14)
@@ -204,14 +204,14 @@ def compare_stages(
             + pad_display(breakeven_label, 18)
         )
         print(row)
-    
-    print(f"\n💡 추천:")
+
+    print("\n💡 추천:")
     if monthly_revenue < 500000:
-        print(f"   → Mini 단계 (네이버 스마트스토어로 검증)")
+        print("   → Mini 단계 (네이버 스마트스토어로 검증)")
     elif monthly_revenue < 3000000:
-        print(f"   → Standard 단계 (자체 시스템 + AI 자동화)")
+        print("   → Standard 단계 (자체 시스템 + AI 자동화)")
     else:
-        print(f"   → Full 단계 (다채널 확장 + 고도 자동화)")
+        print("   → Full 단계 (다채널 확장 + 고도 자동화)")
 
 def main():
     parser = argparse.ArgumentParser(description="월간 비용 예측 계산기")
@@ -223,7 +223,7 @@ def main():
     parser.add_argument("--usd-krw", type=float, default=USD_TO_KRW, help=f"USD→KRW 환율 (기본 {USD_TO_KRW})")
 
     args = parser.parse_args()
-    
+
     if args.stage == "all":
         compare_stages(args.monthly_products, args.monthly_orders, args.monthly_cs_tickets, args.monthly_revenue, args.usd_krw)
     elif args.stage == "mini":
@@ -235,7 +235,7 @@ def main():
     elif args.stage == "full":
         estimate = estimate_full_stage(args.monthly_products, args.monthly_orders, args.monthly_cs_tickets)
         print_cost_breakdown(estimate, args.monthly_orders, args.monthly_revenue)
-    
+
     print(f"\n{'='*70}\n")
 
 if __name__ == "__main__":

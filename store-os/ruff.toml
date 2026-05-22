@@ -1,0 +1,28 @@
+# Ruff config — Store OS
+# 룰 선정 원칙: 실 버그·미사용 코드·import 위생을 강제. 스타일 취향(한 줄 다중 statement 등)은 비강제.
+# https://docs.astral.sh/ruff/
+
+target-version = "py311"
+line-length = 120
+
+[lint]
+# 기본은 안전한 ruleset만:
+#   E   pycodestyle errors
+#   F   pyflakes (실 버그)
+#   W   pycodestyle warnings
+#   B   bugbear (실 버그 패턴)
+select = ["E", "F", "W", "B"]
+
+# 무시: 스타일 취향 (테스트 파일의 compact 스타일 등)
+ignore = [
+    "E701",  # multiple statements on one line (colon) — test 파일 compact 스타일 의도
+    "E702",  # multiple statements on one line (semicolon) — 동일
+    "E501",  # line too long — 한국어 + 코드 혼합이라 종종 길어짐
+    "B008",  # function call in default argument — 의도된 경우 있음
+]
+
+[lint.per-file-ignores]
+# 테스트 파일은 compact·import 트릭 허용
+"tests/**" = ["E402", "F401", "F811"]
+# 예제는 단순 명료성 우선
+"examples/**" = ["F401"]

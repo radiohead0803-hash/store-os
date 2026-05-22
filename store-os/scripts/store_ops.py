@@ -5,7 +5,13 @@ Creates product opportunity scores, draft listings, content calendar, KPI tracke
 and a static HTML dashboard from CSV inputs.
 """
 from __future__ import annotations
-import argparse, csv, html, json, math, statistics, re, hashlib
+import argparse
+import csv
+import html
+import json
+import statistics
+import re
+import hashlib
 from dataclasses import dataclass, asdict
 from datetime import date, datetime, timedelta
 from pathlib import Path
@@ -217,13 +223,13 @@ def listing_markdown(row: Dict[str, str]) -> str:
 - 번들 후보: PDF + 스티커판 + 칭찬스티커 + 사용가이드
 
 ## FAQ Draft
-**Q. 몇 살 아이에게 적합한가요?**  
+**Q. 몇 살 아이에게 적합한가요?**
 A. 초등 저학년 중심으로 설계하되, 가정 상황에 맞게 조정해서 사용할 수 있습니다.
 
-**Q. 학습 성과가 보장되나요?**  
+**Q. 학습 성과가 보장되나요?**
 A. 보장 표현은 사용하지 않습니다. 이 상품은 생활·학습 루틴을 돕는 관리 도구입니다.
 
-**Q. 디지털 파일인가요?**  
+**Q. 디지털 파일인가요?**
 A. 판매 방식에 따라 PDF 다운로드 또는 실물 세트로 구성할 수 있습니다.
 
 ## Tags

@@ -4,7 +4,7 @@
 실행: pip install fastapi uvicorn && python app.py
 접속: http://localhost:8000
 """
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI
 from fastapi.responses import HTMLResponse
 from pydantic import BaseModel
 import sqlite3
@@ -65,7 +65,7 @@ def home():
     <body>
         <h1>🌟 칭찬스티커 스토어</h1>
         <p>초등학생 자녀를 위한 칭찬 보드판 + 스티커 세트</p>
-        
+
         <form id="orderForm">
             <div class="form-group">
                 <label>상품 선택:</label>
@@ -74,37 +74,37 @@ def home():
                     <option value="칭찬스티커 프리미엄 세트" data-price="14900">칭찬스티커 프리미엄 세트 - 14,900원</option>
                 </select>
             </div>
-            
+
             <div class="form-group">
                 <label>수량:</label>
                 <input type="number" id="quantity" value="1" min="1" required>
             </div>
-            
+
             <div class="form-group">
                 <label>주문자 성함:</label>
                 <input type="text" id="customer_name" placeholder="홍길동" required>
             </div>
-            
+
             <div class="form-group">
                 <label>연락처:</label>
                 <input type="tel" id="customer_phone" placeholder="010-1234-5678" required>
             </div>
-            
+
             <button type="submit">주문하기</button>
         </form>
-        
+
         <div id="result"></div>
-        
+
         <hr style="margin: 40px 0;">
         <p><a href="/orders">📋 주문 목록 보기</a></p>
-        
+
         <script>
             document.getElementById('orderForm').addEventListener('submit', async (e) => {
                 e.preventDefault();
-                
+
                 const product = document.getElementById('product');
                 const selectedOption = product.options[product.selectedIndex];
-                
+
                 const orderData = {
                     product: selectedOption.value,
                     customer_name: document.getElementById('customer_name').value,
@@ -112,18 +112,18 @@ def home():
                     quantity: parseInt(document.getElementById('quantity').value),
                     price: parseInt(selectedOption.dataset.price)
                 };
-                
+
                 try {
                     const response = await fetch('/order', {
                         method: 'POST',
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(orderData)
                     });
-                    
+
                     const result = await response.json();
-                    
+
                     if (response.ok) {
-                        document.getElementById('result').innerHTML = 
+                        document.getElementById('result').innerHTML =
                             `<div class="success">
                                 ✅ 주문이 접수되었습니다!<br>
                                 주문번호: #${result.order_id}<br>
@@ -146,7 +146,7 @@ def home():
 def create_order(order: Order):
     """주문 접수"""
     total = order.price * order.quantity
-    
+
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.execute(
         'INSERT INTO orders (product, customer_name, customer_phone, quantity, price, total, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -155,7 +155,7 @@ def create_order(order: Order):
     conn.commit()
     order_id = cursor.lastrowid
     conn.close()
-    
+
     return {
         "order_id": order_id,
         "status": "접수완료",
@@ -170,7 +170,7 @@ def list_orders():
     cursor = conn.execute('SELECT * FROM orders ORDER BY created_at DESC')
     orders = cursor.fetchall()
     conn.close()
-    
+
     html = """
     <!DOCTYPE html>
     <html>
@@ -204,12 +204,12 @@ def list_orders():
                 <th>주문일시</th>
             </tr>
     """
-    
+
     for order in orders:
         order_id, product, name, phone, qty, price, total, status, created = order
         status_class = "pending" if status == "pending" else "completed"
         status_text = "접수완료" if status == "pending" else "처리완료"
-        
+
         html += f"""
             <tr>
                 <td>#{order_id}</td>
@@ -222,14 +222,14 @@ def list_orders():
                 <td>{created[:16]}</td>
             </tr>
         """
-    
+
     html += """
         </table>
         <p>총 주문: """ + str(len(orders)) + """개</p>
     </body>
     </html>
     """
-    
+
     return html
 
 @app.get("/api/orders")
@@ -238,28 +238,28 @@ def get_orders_json():
     conn = sqlite3.connect(DB_PATH)
     cursor = conn.execute('SELECT * FROM orders ORDER BY created_at DESC')
     columns = [description[0] for description in cursor.description]
-    orders = [dict(zip(columns, row)) for row in cursor.fetchall()]
+    orders = [dict(zip(columns, row, strict=False)) for row in cursor.fetchall()]
     conn.close()
-    
+
     return {"orders": orders, "total": len(orders)}
 
 @app.get("/stats")
 def get_stats():
     """통계 (대시보드용)"""
     conn = sqlite3.connect(DB_PATH)
-    
+
     # 총 주문 수
     total_orders = conn.execute('SELECT COUNT(*) FROM orders').fetchone()[0]
-    
+
     # 총 매출
     total_revenue = conn.execute('SELECT SUM(total) FROM orders').fetchone()[0] or 0
-    
+
     # 오늘 주문 수
     today = datetime.now().date().isoformat()
     today_orders = conn.execute('SELECT COUNT(*) FROM orders WHERE created_at LIKE ?', (f'{today}%',)).fetchone()[0]
-    
+
     conn.close()
-    
+
     return {
         "total_orders": total_orders,
         "total_revenue": total_revenue,
@@ -277,5 +277,5 @@ if __name__ == "__main__":
     print("   통계 API: http://localhost:8000/stats")
     print("\n종료: Ctrl+C\n")
     print("="*60 + "\n")
-    
+
     uvicorn.run(app, host="0.0.0.0", port=8000, log_level="info")

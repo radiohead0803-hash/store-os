@@ -4,7 +4,6 @@ from __future__ import annotations
 import argparse
 import json
 from pathlib import Path
-from textwrap import dedent
 
 REQUIRED_DOCS = [
     "BEGINNER_START_HERE.md",
