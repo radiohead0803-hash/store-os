@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  STORE-01 칭찬스티커 보드판 v1
+  사이즈: A4 세로 210 × 297 mm
+  생성: 2026-05-22 (Claude Design 워크플로 v1)
+  Prompt: prompt-board.md
+  DesignAsset: STORE-01-STD board_pdf v1
+  Bleed: 3mm (별도 변환 시 vendor 템플릿 적용)
+  Safe area: 5mm
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="210mm" height="297mm"
+     viewBox="0 0 210 297"
+     font-family="'Pretendard', 'SD Gothic', 'Apple SD Gothic Neo', sans-serif">
+
+  <!-- 배경 -->
+  <rect x="0" y="0" width="210" height="297" fill="#FFFFFF"/>
+
+  <!-- 상단 장식 바 (민트) -->
+  <rect x="0" y="0" width="210" height="8" fill="#A8DADC"/>
+
+  <!-- 제목 -->
+  <text x="105" y="22" font-size="6.5" font-weight="700" fill="#264653" text-anchor="middle" letter-spacing="0.4">
+    칭찬 스티커 보드
+  </text>
+
+  <!-- 이름 영역 -->
+  <text x="26" y="34" font-size="3.5" font-weight="600" fill="#264653">이름</text>
+  <line x1="36" y1="35" x2="184" y2="35" stroke="#A8DADC" stroke-width="0.4"/>
+
+  <!-- 그리드 영역 (5열 × 6행, 각 30×30mm, 칸 간 2mm) -->
+  <!-- 그리드 시작 (x=26, y=44), 너비 5*30+4*2=158, 높이 6*30+5*2=190 -->
+  <g stroke="#A8DADC" stroke-width="0.35" fill="#FFFFFF">
+    <!-- 행 1 -->
+    <rect x="26"  y="44"  width="30" height="30" rx="2"/>
+    <rect x="58"  y="44"  width="30" height="30" rx="2"/>
+    <rect x="90"  y="44"  width="30" height="30" rx="2"/>
+    <rect x="122" y="44"  width="30" height="30" rx="2"/>
+    <rect x="154" y="44"  width="30" height="30" rx="2"/>
+    <!-- 행 2 -->
+    <rect x="26"  y="76"  width="30" height="30" rx="2"/>
+    <rect x="58"  y="76"  width="30" height="30" rx="2"/>
+    <rect x="90"  y="76"  width="30" height="30" rx="2"/>
+    <rect x="122" y="76"  width="30" height="30" rx="2"/>
+    <rect x="154" y="76"  width="30" height="30" rx="2"/>
+    <!-- 행 3 -->
+    <rect x="26"  y="108" width="30" height="30" rx="2"/>
+    <rect x="58"  y="108" width="30" height="30" rx="2"/>
+    <rect x="90"  y="108" width="30" height="30" rx="2"/>
+    <rect x="122" y="108" width="30" height="30" rx="2"/>
+    <rect x="154" y="108" width="30" height="30" rx="2"/>
+    <!-- 행 4 -->
+    <rect x="26"  y="140" width="30" height="30" rx="2"/>
+    <rect x="58"  y="140" width="30" height="30" rx="2"/>
+    <rect x="90"  y="140" width="30" height="30" rx="2"/>
+    <rect x="122" y="140" width="30" height="30" rx="2"/>
+    <rect x="154" y="140" width="30" height="30" rx="2"/>
+    <!-- 행 5 -->
+    <rect x="26"  y="172" width="30" height="30" rx="2"/>
+    <rect x="58"  y="172" width="30" height="30" rx="2"/>
+    <rect x="90"  y="172" width="30" height="30" rx="2"/>
+    <rect x="122" y="172" width="30" height="30" rx="2"/>
+    <rect x="154" y="172" width="30" height="30" rx="2"/>
+    <!-- 행 6 -->
+    <rect x="26"  y="204" width="30" height="30" rx="2"/>
+    <rect x="58"  y="204" width="30" height="30" rx="2"/>
+    <rect x="90"  y="204" width="30" height="30" rx="2"/>
+    <rect x="122" y="204" width="30" height="30" rx="2"/>
+    <rect x="154" y="204" width="30" height="30" rx="2"/>
+  </g>
+
+  <!-- 칸 번호 (좌상단 작게, 활용 가이드용 — 인쇄 시 옵션 제거 가능) -->
+  <g font-size="2.2" fill="#A8DADC" opacity="0.6">
+    <text x="27.5" y="47.5">1</text>  <text x="59.5" y="47.5">2</text>
+    <text x="91.5" y="47.5">3</text>  <text x="123.5" y="47.5">4</text>
+    <text x="155.5" y="47.5">5</text>
+    <text x="27.5" y="79.5">6</text>  <text x="59.5" y="79.5">7</text>
+    <text x="91.5" y="79.5">8</text>  <text x="123.5" y="79.5">9</text>
+    <text x="155.5" y="79.5">10</text>
+    <text x="27.5" y="111.5">11</text> <text x="59.5" y="111.5">12</text>
+    <text x="91.5" y="111.5">13</text> <text x="123.5" y="111.5">14</text>
+    <text x="155.5" y="111.5">15</text>
+    <text x="27.5" y="143.5">16</text> <text x="59.5" y="143.5">17</text>
+    <text x="91.5" y="143.5">18</text> <text x="123.5" y="143.5">19</text>
+    <text x="155.5" y="143.5">20</text>
+    <text x="27.5" y="175.5">21</text> <text x="59.5" y="175.5">22</text>
+    <text x="91.5" y="175.5">23</text> <text x="123.5" y="175.5">24</text>
+    <text x="155.5" y="175.5">25</text>
+    <text x="27.5" y="207.5">26</text> <text x="59.5" y="207.5">27</text>
+    <text x="91.5" y="207.5">28</text> <text x="123.5" y="207.5">29</text>
+    <text x="155.5" y="207.5">30</text>
+  </g>
+
+  <!-- 이번 달 목표 영역 -->
+  <text x="26" y="252" font-size="3.5" font-weight="600" fill="#264653">이번 달 목표</text>
+  <line x1="56" y1="253" x2="184" y2="253" stroke="#FFD6E0" stroke-width="0.4"/>
+  <line x1="56" y1="262" x2="184" y2="262" stroke="#FFD6E0" stroke-width="0.4"/>
+
+  <!-- 하단 장식 점 (소프트 핑크) -->
+  <g fill="#FFD6E0">
+    <circle cx="100" cy="278" r="1"/>
+    <circle cx="105" cy="278" r="1"/>
+    <circle cx="110" cy="278" r="1"/>
+  </g>
+
+  <!-- 푸터 — 작게 -->
+  <text x="105" y="288" font-size="2.4" fill="#A8DADC" text-anchor="middle" opacity="0.8">
+    스스로 약속을 지킨 만큼 스티커를 붙여주세요
+  </text>
+</svg>

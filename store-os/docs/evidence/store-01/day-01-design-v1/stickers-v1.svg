@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+  STORE-01 칭찬스티커 시트 v1
+  사이즈: A4 210 × 297 mm, 30매 (6열 × 5행), 각 30 × 30 mm
+  생성: 2026-05-22 (Claude Design 워크플로 v1)
+  Prompt: prompt-stickers.md
+  DesignAsset: STORE-01-STD sticker_sheet v1
+  Cutline: 각 스티커 외곽 라인. vendor 다이컷 가이드 별도 적용 필요.
+-->
+<svg xmlns="http://www.w3.org/2000/svg"
+     width="210mm" height="297mm"
+     viewBox="0 0 210 297"
+     font-family="'Pretendard', 'SD Gothic', 'Apple SD Gothic Neo', sans-serif">
+
+  <!-- 배경 -->
+  <rect x="0" y="0" width="210" height="297" fill="#FFFFFF"/>
+
+  <!-- 시트 제목 (상단, 인쇄 시 제거 가능) -->
+  <text x="105" y="14" font-size="4" font-weight="600" fill="#264653" text-anchor="middle">
+    칭찬 스티커 시트 — 30매
+  </text>
+  <text x="105" y="20" font-size="2.4" fill="#A8DADC" text-anchor="middle">
+    행동 10매 · 칭찬 10매 · 자유 10매
+  </text>
+
+  <!-- 그리드 영역: 6열 × 5행, 각 30×30mm, 칸 간 2mm -->
+  <!-- 시작 (x=10, y=30), 너비 6*30+5*2=190, 높이 5*30+4*2=158 -->
+
+  <!-- ========== 행 1: 행동 기반 1-6 (민트) ========== -->
+  <g>
+    <rect x="10"  y="30" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="25"  y="48" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">스스로</text>
+    <text x="25"  y="52.5" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">정리했어요</text>
+  </g>
+  <g>
+    <rect x="42"  y="30" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="57"  y="48" font-size="3.5" font-weight="600" fill="#264653" text-anchor="middle">약속</text>
+    <text x="57"  y="52.5" font-size="3.5" font-weight="600" fill="#264653" text-anchor="middle">지켰어요</text>
+  </g>
+  <g>
+    <rect x="74"  y="30" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="89"  y="50" font-size="4" font-weight="600" fill="#264653" text-anchor="middle">양보했어요</text>
+  </g>
+  <g>
+    <rect x="106" y="30" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="121" y="50" font-size="4" font-weight="600" fill="#264653" text-anchor="middle">도와줬어요</text>
+  </g>
+  <g>
+    <rect x="138" y="30" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="153" y="50" font-size="4" font-weight="600" fill="#264653" text-anchor="middle">참았어요</text>
+  </g>
+  <g>
+    <rect x="170" y="30" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="185" y="48" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">감사</text>
+    <text x="185" y="52.5" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">표현했어요</text>
+  </g>
+
+  <!-- ========== 행 2: 행동 기반 7-10 + 일반 1-2 ========== -->
+  <g>
+    <rect x="10"  y="62" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="25"  y="80" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">스스로</text>
+    <text x="25"  y="84.5" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">일어났어요</text>
+  </g>
+  <g>
+    <rect x="42"  y="62" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="57"  y="80" font-size="3.5" font-weight="600" fill="#264653" text-anchor="middle">숙제</text>
+    <text x="57"  y="84.5" font-size="3.5" font-weight="600" fill="#264653" text-anchor="middle">끝냈어요</text>
+  </g>
+  <g>
+    <rect x="74"  y="62" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="89"  y="82" font-size="3.8" font-weight="600" fill="#264653" text-anchor="middle">정리정돈했어요</text>
+  </g>
+  <g>
+    <rect x="106" y="62" width="30" height="30" rx="3" fill="#A8DADC" stroke="#7BBDB0" stroke-width="0.3"/>
+    <text x="121" y="80" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">차분히</text>
+    <text x="121" y="84.5" font-size="3.3" font-weight="600" fill="#264653" text-anchor="middle">기다렸어요</text>
+  </g>
+  <g>
+    <rect x="138" y="62" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="153" y="80" font-size="5" font-weight="700" fill="#A0334E" text-anchor="middle">잘</text>
+    <text x="153" y="86" font-size="3.8" font-weight="600" fill="#A0334E" text-anchor="middle">했어요</text>
+  </g>
+  <g>
+    <rect x="170" y="62" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="185" y="82" font-size="4.5" font-weight="700" fill="#A0334E" text-anchor="middle">최고예요</text>
+  </g>
+
+  <!-- ========== 행 3: 일반 칭찬 3-8 (핑크) ========== -->
+  <g>
+    <rect x="10"  y="94" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="25"  y="114" font-size="4.5" font-weight="700" fill="#A0334E" text-anchor="middle">고마워요</text>
+  </g>
+  <g>
+    <rect x="42"  y="94" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="57"  y="114" font-size="4.5" font-weight="700" fill="#A0334E" text-anchor="middle">사랑해요</text>
+  </g>
+  <g>
+    <rect x="74"  y="94" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="89"  y="112" font-size="3.5" font-weight="600" fill="#A0334E" text-anchor="middle">자랑</text>
+    <text x="89"  y="116.5" font-size="3.5" font-weight="600" fill="#A0334E" text-anchor="middle">스러워요</text>
+  </g>
+  <g>
+    <rect x="106" y="94" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="121" y="114" font-size="5" font-weight="700" fill="#A0334E" text-anchor="middle">멋져요</text>
+  </g>
+  <g>
+    <rect x="138" y="94" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="153" y="115" font-size="9" font-weight="800" fill="#A0334E" text-anchor="middle">굿!</text>
+  </g>
+  <g>
+    <rect x="170" y="94" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="185" y="115" font-size="9" font-weight="800" fill="#A0334E" text-anchor="middle">OK!</text>
+  </g>
+
+  <!-- ========== 행 4: 일반 9-10 + 자유 1-4 ========== -->
+  <g>
+    <rect x="10"  y="126" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="25"  y="147" font-size="9" font-weight="800" fill="#A0334E" text-anchor="middle">Yay!</text>
+  </g>
+  <g>
+    <rect x="42"  y="126" width="30" height="30" rx="3" fill="#FFD6E0" stroke="#E89BAA" stroke-width="0.3"/>
+    <text x="57"  y="148" font-size="14" font-weight="800" fill="#A0334E" text-anchor="middle">★</text>
+  </g>
+  <g>
+    <rect x="74"  y="126" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="89"  y="148" font-size="14" text-anchor="middle">🌟</text>
+  </g>
+  <g>
+    <rect x="106" y="126" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="121" y="148" font-size="14" text-anchor="middle">⭐</text>
+  </g>
+  <g>
+    <rect x="138" y="126" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="153" y="148" font-size="14" text-anchor="middle">❤️</text>
+  </g>
+  <g>
+    <rect x="170" y="126" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="185" y="148" font-size="14" text-anchor="middle">🎉</text>
+  </g>
+
+  <!-- ========== 행 5: 자유 5-10 ========== -->
+  <g>
+    <rect x="10"  y="158" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="25"  y="180" font-size="14" text-anchor="middle">👍</text>
+  </g>
+  <g>
+    <rect x="42"  y="158" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="57"  y="180" font-size="14" text-anchor="middle">😊</text>
+  </g>
+  <g>
+    <rect x="74"  y="158" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="89"  y="180" font-size="14" text-anchor="middle">🏆</text>
+  </g>
+  <g>
+    <rect x="106" y="158" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="121" y="180" font-size="14" text-anchor="middle">🌈</text>
+  </g>
+  <g>
+    <rect x="138" y="158" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="153" y="180" font-size="14" text-anchor="middle">🎈</text>
+  </g>
+  <g>
+    <rect x="170" y="158" width="30" height="30" rx="3" fill="#FFF3B0" stroke="#E5C75A" stroke-width="0.3"/>
+    <text x="185" y="180" font-size="14" text-anchor="middle">🍀</text>
+  </g>
+
+  <!-- 범례 (하단, 인쇄 시 제거 가능) -->
+  <g font-size="2.6">
+    <rect x="10"  y="210" width="6" height="6" rx="1" fill="#A8DADC"/>
+    <text x="18" y="214.5" fill="#264653">행동 (10매)</text>
+
+    <rect x="60" y="210" width="6" height="6" rx="1" fill="#FFD6E0"/>
+    <text x="68" y="214.5" fill="#264653">칭찬 (10매)</text>
+
+    <rect x="110" y="210" width="6" height="6" rx="1" fill="#FFF3B0"/>
+    <text x="118" y="214.5" fill="#264653">자유 (10매)</text>
+  </g>
+
+  <!-- 푸터 -->
+  <text x="105" y="288" font-size="2.4" fill="#A8DADC" text-anchor="middle" opacity="0.8">
+    스티커는 떼었다 다시 붙일 수 있어요
+  </text>
+</svg>
