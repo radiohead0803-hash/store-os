@@ -12,7 +12,7 @@
 3. **스킬 자동 호출이 기본** — 작업에 매칭되는 스킬이 1%라도 있으면 Skill 도구로 invoke 후 진행한다. 매핑 테이블은 §C, §D.
 4. **brainstorming → writing-plans → subagent-driven-development 흐름이 표준** — 새 기능·신규 시스템 개발은 이 3개 스킬 체인을 통과한다. brainstorming의 HARD-GATE: 디자인 승인 전에는 코드 한 줄도 쓰지 않는다.
 5. **GOAL 카드로 모든 복잡 시스템 작업을 정의** — Store OS에서도 PLM/QMS 스타일 GOAL 템플릿을 사용. 발동 조건은 §H.
-6. **상품 디자인 자산은 Claude Design 워크플로 강제** — Canva 등 외부 도구 직접 사용 없이 AI 생성 → DesignAsset 레코드 → IP precheck → 운영자 승인 7단계 통과. proof·승인 게이트 없는 자산은 인쇄·publish 영구 금지. §G-12 + `store-os/references/claude-design-automation.md`.
+6. **상품 디자인 자산은 Claude Design 워크플로 강제** — Canva 등 외부 도구 직접 사용 없이 AI 생성 → DesignAsset 레코드 → IP precheck → 운영자 승인 7단계 통과. proof·승인 게이트 없는 자산은 인쇄·publish 영구 금지. "Claude Design"은 **Anthropic 별도 제품이 아니라 본 프로젝트 내부 워크플로 명칭** — 실체는 5가지 구현 경로(Claude 직접 SVG·Artifacts·이미지 API·Figma MCP·Adobe 스킬). §G-12 + `store-os/references/claude-design-automation.md`.
 
 ---
 
@@ -415,17 +415,23 @@ Pass / Conditional Pass / Fail
 
 | 항목 | 내용 |
 |---|---|
+| **정체** | Anthropic의 별도 제품이 아닌 **본 프로젝트 내부 워크플로 명칭**. 실체는 Claude(LLM) + 주변 도구를 묶은 AI 디자인 파이프라인. |
 | **발동 조건** | 보드판·스티커·썸네일·상세 이미지·패키지 라벨·인쇄물 등 **상품 디자인 자산** 작업 시. "디자인 만들어", "이미지 만들어", "썸네일", "Canva", "디자인 자동화" 등 발화. |
-| **공식 reference** | [`store-os/references/claude-design-automation.md`](store-os/references/claude-design-automation.md) |
-| **7단계 워크플로** | 1) design brief 작성 2) Claude Design 프롬프트 (10요소) 3) 자산 생성 4) DesignAsset 레코드 저장 (proof_status=pending) 5) 인쇄·readability proof 6) IP precheck + legal_check 7) 운영자 승인 → publish |
-| **HARD-GATE** | **DesignAsset의 `proof_status=pass` 와 `operator_approval=approved`가 모두 기록되기 전에는** 인쇄 발주·listing public·마케팅 이미지 사용 일체 금지. |
+| **공식 reference** | [`store-os/references/claude-design-automation.md`](store-os/references/claude-design-automation.md) — 5가지 구현 경로(A–E) 매트릭스 포함 |
+| **5가지 구현 경로** | **A** Claude SVG/HTML 직접 (✅ 본 환경) · **B** claude.ai Artifacts · **C** Claude API + 이미지 생성 API · **D** Figma MCP (✅ 가용) · **E** Adobe 스킬 (✅ 가용) |
+| **작업별 경로 선택** | 보드판·스티커·인쇄용 도형 → A · 상품 사진 가공 → E · 라이프스타일 컷 → C · 디자인 시스템 → D · 인터랙티브 시안 → B |
+| **7단계 워크플로** | 1) design brief 작성 2) 프롬프트(10요소) 3) 자산 생성(A/B/C/D/E 중 선택) 4) DesignAsset 레코드 저장(proof_status=pending) 5) 인쇄·readability proof 6) IP precheck + legal_check 7) 운영자 승인 → publish |
+| **HARD-GATE** | **DesignAsset의 `proof_status=pass` 와 `operator_approval=approved`가 모두 기록되기 전에는** 인쇄 발주·listing public·마케팅 이미지 사용 일체 금지. 경로(A–E) 무관 동일 적용. |
 | **프롬프트 10요소** | 제품명+타겟·자산 종류+크기·사용 장면·스타일·포함 텍스트·인쇄 제약·가독성·회피·필수 export·proof 체크리스트 |
 | **L0 작업** | 운영자 승인·인쇄 발주·public 게시 (자동화 영구 금지) |
-| **L1 작업** | Claude Design 프롬프트 작성·자산 생성·DesignAsset 레코드 |
-| **실패 처리** | 텍스트 작음·cutline 불안전·저작권 리스크·색감 약함·일관성 부족·Claude Design 미가용 — 각각 대응. reference 6종 |
-| **Store OS 매핑** | [STORE-08] 이미지·디자인 자동 생성 GOAL과 직접 연동. STORE-01 plan Task 1·2가 첫 적용 사례. |
+| **L1 작업** | 프롬프트 작성·자산 생성(A–E 중)·DesignAsset 레코드 |
+| **실패 처리** | 텍스트 작음·cutline 불안전·저작권 리스크·색감 약함·일관성 부족·도구 미가용 — 각각 대응. reference 6종 |
+| **Store OS 매핑** | [STORE-08] 이미지·디자인 자동 생성 GOAL과 직접 연동. STORE-01 plan Task 1·2가 첫 적용 사례 (경로 A 사용 — Claude SVG 직접). |
 
-`anthropic-skills:canvas-design`(HTML canvas-design 스킬)과 혼동 금지. Claude Design은 상품용 디자인 자산 생성·관리 워크플로이며, canvas-design은 HTML/JS canvas 그래픽 도구.
+**명명 혼동 주의 — 3가지 서로 다른 것**:
+- **Claude Design 워크플로** (이 카드): 본 프로젝트 내부 디자인 자동화 워크플로 명칭
+- **`anthropic-skills:canvas-design`**: Anthropic이 제공하는 HTML canvas 그래픽 스킬 (별개)
+- **canva.com**: 외부 디자인 도구 (외부 SaaS — 본 프로젝트에서는 사용 안 함)
 
 ---
 
