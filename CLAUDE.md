@@ -5,13 +5,14 @@
 
 ---
 
-## A. 절대 원칙 (5가지)
+## A. 절대 원칙 (6가지)
 
 1. **Builder ≠ Proof** — Builder는 자기 작업을 자기가 승인할 수 없다. Pass/Conditional Pass/Fail은 별도 proof 에이전트만 찍는다.
 2. **병렬 가능 작업은 무조건 병렬** — 의존성 없는 여러 작업은 같은 메시지의 다중 Agent 블록으로 보낸다.
 3. **스킬 자동 호출이 기본** — 작업에 매칭되는 스킬이 1%라도 있으면 Skill 도구로 invoke 후 진행한다. 매핑 테이블은 §C, §D.
 4. **brainstorming → writing-plans → subagent-driven-development 흐름이 표준** — 새 기능·신규 시스템 개발은 이 3개 스킬 체인을 통과한다. brainstorming의 HARD-GATE: 디자인 승인 전에는 코드 한 줄도 쓰지 않는다.
 5. **GOAL 카드로 모든 복잡 시스템 작업을 정의** — Store OS에서도 PLM/QMS 스타일 GOAL 템플릿을 사용. 발동 조건은 §H.
+6. **상품 디자인 자산은 Claude Design 워크플로 강제** — Canva 등 외부 도구 직접 사용 없이 AI 생성 → DesignAsset 레코드 → IP precheck → 운영자 승인 7단계 통과. proof·승인 게이트 없는 자산은 인쇄·publish 영구 금지. §G-12 + `store-os/references/claude-design-automation.md`.
 
 ---
 
@@ -74,6 +75,7 @@ hours          (HARD-GATE +     plans         subagent-     -before-       land-
 | "기술 부채 평가" | `engineering:tech-debt` | |
 | "테스트 전략" | `engineering:testing-strategy` | 단위·통합·E2E 균형 |
 | "디자인 시스템 / 브랜드 / 컬러 팔레트" | `design-consultation` · `anthropic-skills:brand-guidelines` · `design:design-system` | DESIGN.md 산출 |
+| **상품 디자인 자산** (보드판·스티커·썸네일·상세이미지·패키지 라벨·인쇄물) | **Claude Design 워크플로** | [`store-os/references/claude-design-automation.md`](store-os/references/claude-design-automation.md) 7단계 강제: brief → 생성 → DesignAsset 레코드 → proof → IP precheck → 운영자 승인 → publish. §H-5 카드 참조 |
 | "시안 더 보여줘", "디자인 변형 / shotgun" | `design-shotgun` | 다중 AI 변형 + 비교 보드 |
 | "최종 HTML 디자인" | `design-html` | Pretext-native, 30KB |
 | "접근성 검토" | `design:accessibility-review` | WCAG · screen reader |
@@ -282,6 +284,7 @@ Pass / Conditional Pass / Fail
 | SKILL.md 수정 | `anthropic-skills:skill-creator` | description optimizer 포함 |
 | MCP 추가·신규 작성 | `cso` → `anthropic-skills:mcp-builder` | supply chain 검토 선행 |
 | UI 변경 후 검증 | `qa` + Preview MCP | gstack family |
+| 상품 디자인 자산 작업 (보드판·스티커·이미지·라벨) | **Claude Design 워크플로** (`store-os/references/claude-design-automation.md`) | DesignAsset 레코드 + proof_status·operator_approval 게이트 의무. §G-12 |
 | 사용자가 "배포·push·PR" 언급 | `ship` → `land-and-deploy` → `canary` | gstack chain |
 | "전체 자동 리뷰", "모든 리뷰 돌려" | `autoplan` | CEO+design+eng+DX 통합 |
 | "리뷰 평가만" (단일 영역) | `plan-ceo-review` / `plan-eng-review` / `plan-design-review` / `plan-devex-review` | 영역 매칭 |
@@ -408,6 +411,22 @@ Pass / Conditional Pass / Fail
 
 `autoplan`은 "review" 키워드 다발 시 우선 후보. 단, 사용자가 단일 리뷰만 원하면 개별 `plan-*-review` 사용.
 
+### G-12. **Claude Design 워크플로** (디자인 자산 디시플린)
+
+| 항목 | 내용 |
+|---|---|
+| **발동 조건** | 보드판·스티커·썸네일·상세 이미지·패키지 라벨·인쇄물 등 **상품 디자인 자산** 작업 시. "디자인 만들어", "이미지 만들어", "썸네일", "Canva", "디자인 자동화" 등 발화. |
+| **공식 reference** | [`store-os/references/claude-design-automation.md`](store-os/references/claude-design-automation.md) |
+| **7단계 워크플로** | 1) design brief 작성 2) Claude Design 프롬프트 (10요소) 3) 자산 생성 4) DesignAsset 레코드 저장 (proof_status=pending) 5) 인쇄·readability proof 6) IP precheck + legal_check 7) 운영자 승인 → publish |
+| **HARD-GATE** | **DesignAsset의 `proof_status=pass` 와 `operator_approval=approved`가 모두 기록되기 전에는** 인쇄 발주·listing public·마케팅 이미지 사용 일체 금지. |
+| **프롬프트 10요소** | 제품명+타겟·자산 종류+크기·사용 장면·스타일·포함 텍스트·인쇄 제약·가독성·회피·필수 export·proof 체크리스트 |
+| **L0 작업** | 운영자 승인·인쇄 발주·public 게시 (자동화 영구 금지) |
+| **L1 작업** | Claude Design 프롬프트 작성·자산 생성·DesignAsset 레코드 |
+| **실패 처리** | 텍스트 작음·cutline 불안전·저작권 리스크·색감 약함·일관성 부족·Claude Design 미가용 — 각각 대응. reference 6종 |
+| **Store OS 매핑** | [STORE-08] 이미지·디자인 자동 생성 GOAL과 직접 연동. STORE-01 plan Task 1·2가 첫 적용 사례. |
+
+`anthropic-skills:canvas-design`(HTML canvas-design 스킬)과 혼동 금지. Claude Design은 상품용 디자인 자산 생성·관리 워크플로이며, canvas-design은 HTML/JS canvas 그래픽 도구.
+
 ---
 
 ## H. GOAL 카드 — 복잡 시스템 작업의 표준 정의 도구
@@ -473,7 +492,7 @@ Pass / Conditional Pass / Fail
 | **[STORE-05]** | OAuth·API 연동 | "네이버 API", "쿠팡 API", "OAuth", "refresh token" |
 | **[STORE-06]** | 법률·과대광고·아동대상 점검 | "전자상거래법", "100% 효과", "초등학생 대상", "과대광고" |
 | **[STORE-07]** | proof / audit / kill-switch 설계 | "승인 게이트", "audit log", "자동 일시정지", "환불 자동" |
-| **[STORE-08]** | 이미지·디자인 자동 생성 | "썸네일", "상세 이미지", "프린터블 PDF", "디자인 brief" |
+| **[STORE-08]** | 이미지·디자인 자동 생성 (Claude Design 워크플로) | "썸네일", "상세 이미지", "프린터블 PDF", "디자인 brief", "Claude Design", "DesignAsset" |
 | **[STORE-09]** | KPI 추적·운영 보고 | "KPI tracker", "운영 대시보드", "주간 보고", "ROAS" |
 | **[STORE-10]** | IP / 저작권 / 상표 precheck | "캐릭터 라이선스", "디즈니", "산리오", "상표권" |
 | **[STORE-11]** | 배포·릴리즈·인프라 | "Railway 배포", "Vercel 배포", "PostgreSQL 마이그레이션" |
