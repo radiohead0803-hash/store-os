@@ -1,0 +1,5 @@
+interface:
+  display_name: Claude Store OS
+  short_description: Build and operate Claude-based AI automated store systems.
+  icon: assets/icon.svg
+  color: '#5B4B8A'

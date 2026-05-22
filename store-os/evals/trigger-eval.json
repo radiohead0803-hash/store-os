@@ -1,0 +1,82 @@
+[
+  {
+    "query": "스마트스토어 자체 구축하고 싶은데 어디서부터 시작해야 할지 모르겠어요. 디자이너인데 코딩은 거의 처음이에요. 일단 칭찬스티커 같은 거 팔아보고 싶은데",
+    "should_trigger": true
+  },
+  {
+    "query": "초등학생 학습 보상용 칭찬스티커 보드판 세트를 네이버 스마트스토어랑 쿠팡 둘 다 올리려고 합니다. 매번 손으로 등록하기 너무 번거로워서 자동화 만들고 싶어요",
+    "should_trigger": true
+  },
+  {
+    "query": "Claude API로 상품 설명 자동 생성하면 한 달에 비용이 얼마나 나올까요? Sonnet 쓸 거고 월 300개 정도 등록 예정이에요. CS 답변 초안도 100건 정도 만들 거고",
+    "should_trigger": true
+  },
+  {
+    "query": "네이버 커머스 API OAuth 인증에서 막혔어요. refresh_token 갱신이 401로 떨어지는데 어떻게 디버깅하죠? 상품 등록 API 호출하려고 합니다",
+    "should_trigger": true
+  },
+  {
+    "query": "내가 자동 생성한 상품 페이지에 '100% 효과' '학습 능력 향상 보장' 이런 표현 들어갔는데 전자상거래법 위반인지 자동으로 점검할 방법 없을까요. 초등학생 대상 제품이라 더 걱정됩니다",
+    "should_trigger": true
+  },
+  {
+    "query": "ai로 굿즈 스토어 운영하고 싶어요. 다이어리 스티커, 폰케이스, 키링 같은 거. 디자인부터 등록·CS까지 어디까지 자동화 가능한지 알려주세요",
+    "should_trigger": true
+  },
+  {
+    "query": "FastAPI로 주문 받는 MVP 만들고 싶은데 SQLite로 충분한가요? 칭찬스티커 첫 달 50건 정도 예상이고 나중에 PostgreSQL로 갈 거예요. 코드 1줄부터 시작하고 싶어요",
+    "should_trigger": true
+  },
+  {
+    "query": "쿠팡 PDS 셀러인데 매일 200개씩 새 상품 등록하고 있습니다. 손이 너무 많이 가서 AI한테 시키고 싶은데 자동 등록이 위험한 부분 어디인가요? 운영자 승인 어디까지 필요할까요",
+    "should_trigger": true
+  },
+  {
+    "query": "디지털 프린터블 PDF (학습 체크리스트, 식단표, 가계부) 자동 생성하고 Shopify에 올리는 파이프라인 만들고 싶어요. Claude API + 이미지 생성 + 자동 등록 흐름이 가능한가요",
+    "should_trigger": true
+  },
+  {
+    "query": "AI가 운영하는 스토어에서 환불 분쟁이 났을 때 AI가 자동으로 처리하면 안 되는 이유가 뭔가요? 어떤 게이트는 사람이 꼭 봐야 하고, 어떤 건 자동화해도 되는지 기준이 궁금해요",
+    "should_trigger": true
+  },
+  {
+    "query": "Apple App Store에 iOS 앱 출시하려면 어떤 인증서가 필요하고 심사는 보통 얼마나 걸리나요? Xcode에서 archive까지는 했는데 그 다음을 모르겠어요",
+    "should_trigger": false
+  },
+  {
+    "query": "Microsoft Store에 윈도우 데스크탑 앱 배포하려고 합니다. MSIX 패키지 만드는 법이랑 partner center 등록 절차 알려주세요",
+    "should_trigger": false
+  },
+  {
+    "query": "오프라인 매장 인테리어 디자인 트렌드 2026년 버전 정리해주세요. 카페 콘셉트인데 자연광 활용이 트렌드인지 궁금합니다",
+    "should_trigger": false
+  },
+  {
+    "query": "AWS S3에 정적 웹사이트 호스팅하는 방법 알려주세요. CloudFront로 CDN 붙이고 Route53으로 도메인 연결까지 하고 싶어요",
+    "should_trigger": false
+  },
+  {
+    "query": "Notion에 재고 관리 데이터베이스 만들려고 합니다. 입고/출고 기록하고 안전재고 알림 트리거 거는 게 가능할까요?",
+    "should_trigger": false
+  },
+  {
+    "query": "회사 내부 직원용 사내 위키 만들고 싶은데 Notion이랑 Confluence 중에 뭐가 나을까요? 200명 규모이고 권한 관리가 중요해요",
+    "should_trigger": false
+  },
+  {
+    "query": "React 컴포넌트 라이브러리 추천해주세요. shadcn/ui랑 chakra ui 둘 다 써봤는데 폼 처리는 어느 쪽이 편한가요. SaaS 대시보드 만드는 중입니다",
+    "should_trigger": false
+  },
+  {
+    "query": "PostgreSQL JSONB 컬럼에 들어간 중첩 객체를 효율적으로 인덱싱하는 방법이요. GIN 인덱스랑 path 인덱스 차이가 뭔지 헷갈려요",
+    "should_trigger": false
+  },
+  {
+    "query": "OpenAI API랑 Anthropic API 가격 비교해주세요. 일반 챗봇 용도이고 한국어 응답 퀄리티가 중요해요. 월 100만 토큰 정도 예상",
+    "should_trigger": false
+  },
+  {
+    "query": "GitHub Actions에서 매일 새벽 3시(KST)에 cron job 돌리는 워크플로 만들고 싶어요. Python 스크립트 실행하고 결과를 슬랙에 알림 보내는 것까지",
+    "should_trigger": false
+  }
+]

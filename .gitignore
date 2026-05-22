@@ -1,0 +1,65 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Virtual envs
+venv/
+.venv/
+env/
+ENV/
+
+# Local databases / runtime artifacts
+*.db
+*.sqlite
+*.sqlite3
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+
+# OS
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Claude Code local settings (user-specific permissions)
+.claude/settings.local.json
+
+# Build / dist
+build/
+dist/
+*.tgz
+*.tar.gz
+
+# Test/eval outputs
+store-os/evals/results/
+store-os/out/
+
+# Mini MVP runtime
+store-os/examples/mini-mvp/orders.db
+store-os/examples/mini-mvp/*.db
+
+# Logs
+*.log
+logs/
+
+# Coverage
+htmlcov/
+.coverage
+.coverage.*
+coverage.xml
+*.cover

@@ -1,0 +1,105 @@
+// Starter Prisma schema for Claude Store OS MVP
+// Review and adapt before production use.
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum ProductStatus {
+  idea
+  scored
+  design_requested
+  design_ready
+  proof_review
+  approved
+  public
+  selling
+  improve_or_stop
+}
+
+enum ApprovalStatus {
+  pending
+  approved
+  rejected
+  conditional
+}
+
+model ProductIdea {
+  id             String   @id @default(cuid())
+  title          String
+  target         String
+  problem        String
+  marketScore    Int      @default(0)
+  productionScore Int     @default(0)
+  marginScore    Int      @default(0)
+  riskScore      Int      @default(0)
+  status         ProductStatus @default(idea)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model Product {
+  id             String   @id @default(cuid())
+  title          String
+  slug           String   @unique
+  price          Int
+  status         ProductStatus @default(idea)
+  publicVisibility Boolean @default(false)
+  legalApproved  Boolean  @default(false)
+  proofApproved  Boolean  @default(false)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+}
+
+model ProofChecklist {
+  id          String @id @default(cuid())
+  productId   String
+  item        String
+  result      ApprovalStatus @default(pending)
+  evidenceUrl String?
+  reviewer    String?
+  createdAt   DateTime @default(now())
+}
+
+model InventoryItem {
+  id           String @id @default(cuid())
+  productId    String
+  onHand       Int    @default(0)
+  reserved     Int    @default(0)
+  reorderPoint Int    @default(5)
+  reorderLimit Int    @default(30)
+}
+
+model Order {
+  id                String @id @default(cuid())
+  customerEmail      String?
+  customerName       String?
+  paymentStatus      String @default("pending")
+  fulfillmentStatus  String @default("pending")
+  riskFlags          String @default("[]")
+  createdAt          DateTime @default(now())
+}
+
+model AutomationPolicy {
+  id              String @id @default(cuid())
+  action          String
+  maxBudget       Int?
+  allowedStatuses String
+  requiresApproval Boolean @default(true)
+  enabled         Boolean @default(false)
+}
+
+model AuditEvent {
+  id        String @id @default(cuid())
+  actor     String
+  action    String
+  target    String
+  before    String?
+  after     String?
+  createdAt DateTime @default(now())
+}
