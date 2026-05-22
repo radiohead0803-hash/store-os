@@ -55,9 +55,9 @@ def estimate_mini_stage() -> CostEstimate:
     """Mini 단계 비용"""
     return CostEstimate(
         stage="Mini",
-        claude_api=0.0,  # 웹 인터페이스 사용
+        claude_api=0.0,  # Claude 웹 (Pro 권장, 디자인+카피 모두 커버)
         infrastructure=0.0,  # 네이버 스마트스토어
-        image_gen=0.0,  # Canva 무료
+        image_gen=0.0,  # Claude Design (Pro에 포함)
         monitoring=0.0,
         total=0.0
     )
@@ -80,7 +80,7 @@ def estimate_standard_stage(
         stage="Standard",
         claude_api=claude,
         infrastructure=infra,
-        image_gen=0.0,  # Canva Pro $13/월은 선택
+        image_gen=0.0,  # 별도 이미지 생성은 Standard 후반·Full에서 도입
         monitoring=0.0,
         total=claude + infra
     )

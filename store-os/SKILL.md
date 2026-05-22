@@ -41,7 +41,7 @@ python scripts/legal_check.py listings/*.md
 python scripts/cost_calculator.py --monthly-orders 100
 ```
 
-도구: 네이버 스마트스토어 직접 입점 + Canva 디자인 + Claude 웹. 시스템 개발 0줄.
+도구: 네이버 스마트스토어 직접 입점 + Claude Design (자산 생성 + DesignAsset 버전 관리 + 운영자 승인) + Claude 웹. 시스템 개발 0줄.
 
 ### Standard — $25–50/월, FastAPI + SQLite
 
@@ -171,6 +171,7 @@ builder는 자기 작업을 자기가 승인할 수 없다. proof agent만 Pass�
 | `references/legal-checklist.md` | 전자상거래법·과대광고·아동대상 제품·개인정보·약관 작성 시 |
 | `references/store-architecture.md` | DB 스키마, 모듈 경계, API 구조, repo 레이아웃 요청 시 |
 | `references/claude-agent-prompts.md` | Claude Code/Claude Design/Proof Agent 프롬프트가 필요할 때 |
+| `references/claude-design-automation.md` | 디자인 자산(보드판·스티커·썸네일·상세 이미지·라벨) 생성 워크플로·DesignAsset 레코드·IP precheck·proof 게이트 |
 | `references/full-tier-ops-harness.md` | Full 단계에서 connector·order state·kill-switch·audit 도입 시 |
 | `references/cost-breakdown.md` | 단계별 상세 비용·손익분기·Claude API 토큰 계산 요청 시 |
 | `references/proof-and-audit.md` | proof agent 운용·audit log 스키마·승인 게이트 설계 요청 시 |

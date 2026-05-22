@@ -51,7 +51,7 @@
 ## 3. 출시 일정 (14일)
 
 ```
-Day 1     Canva에서 보드판 + 스티커 디자인 v1
+Day 1     Claude Design으로 보드판 + 스티커 자산 v1 생성 → DesignAsset 레코드 저장
 Day 2     v1 자가 출력 1장 검수 + PDF/CMYK 변환
 Day 3     인쇄소 견적 3곳 비교 + 컬러프루프 1장 요청
 Day 4     인쇄소 50건 발주 (납기 3–5일)
@@ -221,7 +221,7 @@ store-os/docs/evidence/store-01/
 |---|---|---|
 | 사업자 등록·통신판매업 신고 | L0 | 운영자 직접 (이미 완료) |
 | 약관·환불 정책 작성 승인 | L0 | AI 초안 → 운영자 검토·승인 |
-| 보드판·스티커 디자인 (Canva) | L1 | 운영자 직접 작업 |
+| 보드판·스티커 디자인 (Claude Design) | L1 | AI 자산 생성 → 운영자 검토·승인. DesignAsset 레코드 + proof_status·operator_approval 게이트 의무 |
 | 상품 설명 카피 | L1 | Claude 초안 → 편집 → `legal_check.py` → 등록 |
 | 가격·재고 설정 | L1 | 운영자 직접 |
 | 인쇄 발주 | L0 | 운영자 직접 |

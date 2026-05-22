@@ -193,7 +193,7 @@ def print_result(result: ValidationResult):
     # 다음 액션
     if result.score >= 70:
         print("\n🎯 다음 단계:")
-        print("   1. Canva에서 디자인 시작")
+        print("   1. Claude Design으로 디자인 자산 생성 (references/claude-design-automation.md 참조)")
         print("   2. python scripts/auto_claude.py로 상품 설명 생성")
         print("   3. python scripts/legal_check.py로 법률 체크")
         print("   4. 네이버 스마트스토어 입점")
