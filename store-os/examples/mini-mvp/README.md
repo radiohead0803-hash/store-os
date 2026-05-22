@@ -114,9 +114,10 @@ curl http://localhost:8000/stats
 
 ## 다음 단계
 
-### 1단계: 디자인 추가 (Canva)
-- 상품 이미지 제작
-- 썸네일 + 상세 이미지
+### 1단계: 디자인 추가 (Claude Design)
+- 상품 이미지·썸네일·상세 이미지 자산 생성
+- DesignAsset 레코드 + 운영자 승인 워크플로
+- 참고: `references/claude-design-automation.md`
 
 ### 2단계: 상품 설명 생성 (Claude)
 ```bash
