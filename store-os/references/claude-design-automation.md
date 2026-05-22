@@ -1,10 +1,37 @@
 # Claude Design Automation
 
-> Store OS 디자인 자산은 **Claude Design**으로 생성한다. 운영자가 직접 디자인 도구(Canva 등)를 다루지 않고, AI 생성 → 운영자 승인 워크플로를 따른다.
+> Store OS 디자인 자산은 **Claude Design 워크플로**로 생성한다. 운영자가 외부 디자인 도구(Canva 등)를 직접 다루지 않고, AI 생성 → 운영자 승인 → DesignAsset 레코드 워크플로를 따른다.
+
+## "Claude Design" 정체 명시
+
+**"Claude Design"은 Anthropic의 별도 제품이 아닙니다.** 본 프로젝트 내부에서 사용하는 워크플로 명칭이며, 실체는 **Claude(LLM)와 주변 도구를 묶은 AI 디자인 파이프라인**입니다.
+
+`anthropic-skills:canvas-design`(HTML canvas 그래픽 스킬)과도 다릅니다 — 두 명칭이 비슷해서 혼동하기 쉽지만 별개.
+
+### 5가지 실제 구현 경로
+
+| 경로 | 출력물 | 비용 | 본 환경 가용 | 적합 작업 |
+|---|---|---|---|---|
+| **A. Claude가 SVG/HTML 직접 작성** | 벡터 그래픽·UI 레이아웃·인쇄용 도형 | 무료 (Claude 사용권) | ✅ | 보드판·스티커·인포그래픽·인쇄용 PDF 소스·간단 썸네일 |
+| **B. claude.ai Artifacts** | SVG·HTML·React 컴포넌트 인터랙티브 미리보기 | 무료 (Pro·Free) | ⚠️ 사용자가 claude.ai 웹에서 실행 | UI 시안 비교·인터랙티브 mockup·운영자 시연 |
+| **C. Claude API + 이미지 생성 API 연동** | 사진풍 비트맵 (DALL-E 3·Stable Diffusion·Midjourney·Replicate 등) | 약 $0.04–0.08/장 | ⚠️ 별도 API 키 필요 | 상품 사진·라이프스타일 컷·고품질 마케팅 이미지 |
+| **D. Figma MCP 연동** | 실제 Figma 파일 (Auto Layout·컴포넌트·디자인 시스템) | Figma 계정 | ✅ `mcp__db1e6d74-…__use_figma` | 디자인 시스템·재사용 컴포넌트·Standard 단계 브랜드 통일 |
+| **E. Adobe 스킬 연동** | 사진 리터칭·리사이즈·소셜 변형·템플릿 디자인 | Adobe Creative Cloud | ✅ `adobe-for-creativity:adobe-*` | 입고 사진 가공·소셜 미디어 변형·배치 편집 |
+
+### Store OS 작업별 권장 경로
+
+```
+[보드판·스티커 베이스 (Mini 단계)]    → A (Claude SVG 직접)
+[인쇄용 다이컷·키스컷 가이드 추가]    → A + 수동 vendor 템플릿 입력
+[베타 후기 사진·상품 입고 사진 가공]  → E (Adobe 스킬)
+[마케팅 라이프스타일 컷 (Standard+)]  → C (이미지 생성 API)
+[디자인 시스템·브랜드 통일 (Full)]    → D (Figma MCP)
+[운영자 시연용 인터랙티브 mockup]     → B (Artifacts)
+```
 
 ## Core Rule
 
-Claude Design은 디자인 자산을 생성·수정할 수 있지만, **인쇄 proof + 저작권 점검 + 운영자 승인이 기록되기 전에는 상품을 출시할 수 없다.**
+워크플로(경로 A–E 무관)는 디자인 자산을 생성·수정할 수 있지만, **인쇄 proof + 저작권 점검 + 운영자 승인이 기록되기 전에는 상품을 출시할 수 없다.**
 
 ## 워크플로 (필수 단계 순서)
 
