@@ -1,0 +1,44 @@
+name: Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  test:
+    name: store_ops unittest (Python ${{ matrix.python-version }})
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.11", "3.12"]
+    defaults:
+      run:
+        working-directory: store-os
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+
+      - name: Verify Python and OS
+        run: |
+          python --version
+          uname -a
+
+      - name: Run store_ops unittest suite
+        run: |
+          python -m unittest tests.test_store_ops -v
+
+      - name: Smoke-test CLI scripts (--help)
+        run: |
+          python scripts/legal_check.py --help
+          python scripts/init_store_project.py --help
+          python scripts/cost_calculator.py --help
+          python scripts/validate_idea.py "테스트 아이디어" || true
