@@ -89,4 +89,4 @@ python store-os/scripts/cost_calculator.py --monthly-orders 100
 
 ## 라이선스
 
-MIT (별도 LICENSE 파일은 추후 추가).
+[MIT](LICENSE)
